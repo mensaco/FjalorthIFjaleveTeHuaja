@@ -9,7 +9,7 @@ var nocacheheaders = {
 };
 
 const getFjalet = async () => {
-    const response = await fetch("https://raw.githubusercontent.com/mensaco/FjalorthIFjaleveTeHuaja/master/fjalet.json", nocacheheaders)
+    const response = await fetch(`https://raw.githubusercontent.com/mensaco/FjalorthIFjaleveTeHuaja/master/fjalet.json?r=${Math.random()}`, nocacheheaders)
     const fjalet = response.json()
     return fjalet
 }
