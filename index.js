@@ -8,7 +8,6 @@ let fjalet = {};
 
 
 [...document.querySelectorAll(".initially-shown")].forEach(x => x.classList.remove("hidden"));
-[...document.querySelectorAll(".initially-hidden")].forEach(x => x.classList.add("hidden"));
 
 getFjalet()
     .then(data => {
@@ -18,7 +17,6 @@ getFjalet()
         console.log(x);
     }).finally(() => {
         [...document.querySelectorAll(".initially-shown")].forEach(x => x.classList.add("hidden"));
-        [...document.querySelectorAll(".initially-hidden")].forEach(x => x.classList.remove("hidden"));
         document.querySelector(".out").classList.add('hidden');
     })
     ;
@@ -41,7 +39,7 @@ var onkeyup = (e) => {
     const cv = toSearch(ev)
     const filt = Object.keys(fjalet).filter(f => toSearch(f).includes(cv))
     const afilt = filt.sort().map(f => "<li>" + f + " = " + fjalet[f] + "</li>")
-    document.querySelector(".out").innerHTML = afilt.join('');
+    document.querySelector("#otpt").innerHTML = afilt.join('');
     if (afilt.length > 0) {
         document.querySelector(".out").classList.remove('hidden');
     }
