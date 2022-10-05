@@ -19,7 +19,7 @@ getFjalet()
     }).finally(() => {
         [...document.querySelectorAll(".initially-shown")].forEach(x => x.classList.add("hidden"));
         [...document.querySelectorAll(".initially-hidden")].forEach(x => x.classList.remove("hidden"));
-        document.querySelector(".out").classList.add('hidden');
+        
     })
     ;
 
