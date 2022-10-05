@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer utilities {
+    body {
+        @apply bg-gray-100;
+    }
     li {
         @apply px-3 py-2 bg-gray-50 border border-gray-200;
     }
