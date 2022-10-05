@@ -39,7 +39,12 @@
 
             <div class="my-3">
                 <label class="text-gray-700 text-xl">Kërko fjalën e huaj</label><br>
-                <input type="search" onkeyup="onkeyup" class="my-3 p-2 border border-gray-500 w-full max-w-sm">
+                <div class="flex justify-start items-center gap-x-3 max-w-md">
+                    <input type="search" onkeyup="onkeyup" class="my-3 p-2 border border-gray-500">
+                    <button type="button" 
+                    class="px-3 py-2 text-gray-700 bg-gray-200 border border-gray-300 hover:bg-gray-300 hover:border-gray-400 hover:text-gray-900">të gjitha</button>
+                </div>
+                
             </div>
 
             <div class="out my-3">
@@ -48,8 +53,7 @@
 
             <div>
                 <ul id="otpt" class="out max-w-lg h-96 overflow-y-scroll m-0 text-amber-800"></ul>
-            </div>
-            
+            </div>           
 
         </div>
 
