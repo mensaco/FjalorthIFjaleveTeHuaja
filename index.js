@@ -20,10 +20,10 @@ let fjalet = {};
 getFjalet()
     .then(data => {
         fjalet = data;
-        console.log(data)
+        //console.log(data)
     })
     .catch(x => {
-        console.log(x);
+        //todo: error modal
     }).finally(() => {
         [...document.querySelectorAll(".initially-shown")].forEach(x => x.classList.add("hidden"));
         document.querySelector(".out").classList.add('hidden');
@@ -45,7 +45,7 @@ var onkeyup = (e) => {
         const ev = e.target.value
 
         if (!ev) {
-            console.log("!ev");
+            //console.log("!ev");
             document.querySelector(".out").classList.add('hidden');
             document.querySelector("#otpt").innerHTML = '';
             return;
