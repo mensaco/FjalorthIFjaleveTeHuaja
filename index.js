@@ -1,4 +1,5 @@
 const nocache = new Headers();
+var allItems = false;
 
 var nocacheheaders = {
     method: 'GET',
@@ -38,20 +39,30 @@ const toSearch = (x) => {
 
 var onkeyup = (e) => {
 
-    const ev = e.target.value
+    var filt = Object.keys(fjalet)
 
-    if (!ev) {
-        console.log("!ev");
-        document.querySelector(".out").classList.add('hidden');
-        document.querySelector("#otpt").innerHTML = '';
-        return;
-    };
+    if (!allItems) {
+        const ev = e.target.value
 
-    const cv = toSearch(ev)
-    const filt = Object.keys(fjalet).filter(f => toSearch(f +  ' ' + fjalet[f]).includes(cv))
+        if (!ev) {
+            console.log("!ev");
+            document.querySelector(".out").classList.add('hidden');
+            document.querySelector("#otpt").innerHTML = '';
+            return;
+        };
+
+        const cv = toSearch(ev)
+
+        filt = filt.filter(f => toSearch(f + ' ' + fjalet[f]).includes(cv))
+    }
+    else {
+        allItems = false;
+    }
+
+
     const afilt = filt.sort().map(f => "<li>" + f + " = " + fjalet[f] + "</li>")
     document.querySelector("#otpt").innerHTML = afilt.join('');
-    
+
     if (afilt.length > 0) {
         document.querySelector(".out").classList.remove('hidden');
     }
@@ -59,4 +70,9 @@ var onkeyup = (e) => {
         document.querySelector(".out").classList.add('hidden');
     }
 
+}
+
+var onclick = (e) => {
+    allItems = true;
+    onkeyup(null);
 }
