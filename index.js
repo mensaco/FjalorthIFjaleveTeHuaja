@@ -1,6 +1,15 @@
+const nocache = new Headers();
+// nocache.append('pragma', 'no-cache');
+// nocache.append('cache-control', 'no-cache');
+
+var nocacheheaders = {
+  method: 'GET',
+  headers: nocache,
+  cache: 'reload'
+};
 
 const getFjalet = async () => {
-    const response = await fetch("https://raw.githubusercontent.com/mensaco/FjalorthIFjaleveTeHuaja/master/fjalet.json"+"?_x="+Math.random())
+    const response = await fetch("https://raw.githubusercontent.com/mensaco/FjalorthIFjaleveTeHuaja/master/fjalet.json", nocacheheaders)
     const fjalet = response.json()
     return fjalet
 }
@@ -12,6 +21,7 @@ let fjalet = {};
 getFjalet()
     .then(data => {
         fjalet = data;
+        console.log(data)
     })
     .catch(x => {
         console.log(x);
@@ -32,8 +42,9 @@ var onkeyup = (e) => {
 
     const ev = e.target.value
     if (!ev) {
+        console.log("!ev");
         document.querySelector(".out").classList.add('hidden');
-        document.querySelector(".out").innerHTML = '';
+        document.querySelector("#otpt").innerHTML ='';
         return;
     };
     const cv = toSearch(ev)
