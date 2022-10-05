@@ -17,6 +17,10 @@ let fjalet = {};
 
 [...document.querySelectorAll(".initially-shown")].forEach(x => x.classList.remove("hidden"));
 
+document.querySelector("#inpt").addEventListener('keyup', drawItems);
+document.querySelector("#drbtn").addEventListener('click', drawAllItems);
+
+
 getFjalet()
     .then(data => {
         fjalet = data;
@@ -37,7 +41,7 @@ const toSearch = (x) => {
     return x.replace(/ /g, '').toLowerCase().replace(/ë/gi, "e").replace(/ç/gi, "c")
 }
 
-var onkeyup = (e) => {
+function drawItems(e) {
 
     var filt = Object.keys(fjalet)
 
@@ -72,7 +76,7 @@ var onkeyup = (e) => {
 
 }
 
-var onclick = (e) => {
+function drawAllItems(e) {
     allItems = true;
-    onkeyup(null);
+    drawItems(null);
 }
