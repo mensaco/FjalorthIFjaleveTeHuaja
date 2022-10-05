@@ -1,6 +1,6 @@
 
 const getFjalet = async () => {
-    const response = await fetch("https://raw.githubusercontent.com/mensaco/FjalorthIFjaleveTeHuaja/master/fjalet.json")
+    const response = await fetch("https://raw.githubusercontent.com/mensaco/FjalorthIFjaleveTeHuaja/master/fjalet.json"+"?_x="+Math.random())
     const fjalet = response.json()
     return fjalet
 }
