@@ -44,6 +44,7 @@ const toSearch = (x) => {
 function drawItems(e) {
 
     var filt = Object.keys(fjalet)
+    var cv = "";
 
     if (!allItems) {
         const ev = e.target.value
@@ -55,7 +56,7 @@ function drawItems(e) {
             return;
         };
 
-        const cv = toSearch(ev)
+        cv = toSearch(ev)
 
         filt = filt.filter(f => toSearch(f + ' ' + fjalet[f]).includes(cv))
     }
@@ -64,7 +65,7 @@ function drawItems(e) {
     }
 
 
-    const afilt = filt.sort().map(f => "<li>" + f + " = " + fjalet[f] + "</li>")
+    const afilt = filt.sort().map(f => "<li>" + (f + " = " + fjalet[f]).replace(cv, "<span class='text-orange-500'>"+cv+"</span>") + "</li>")
     document.querySelector("#otpt").innerHTML = afilt.join('');
 
     if (afilt.length > 0) {

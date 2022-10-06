@@ -7,17 +7,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fjalorth i fjalëve të huaja</title>
 
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/styles.css?v=1">
 
     <script src="/index.js" defer></script>
 
 </head>
 
-<body>
+<body class="bg-gray-100">
 
 
 
-    <div class="main p-3">
+    <div class="md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto p-3" >
+        
+        <div class="flex justify-start items-center">
+
+        </div>
+        <div class="bg-white">
+            <img class="h-80 sm:h-40 overflow-hidden" src="/FjalorthiIFjaleveTeHuajaOptimized.svg" >
+        </div>
+        
+        
 
         <div class="flex flex-col">
 
@@ -39,10 +48,10 @@
 
             <div class="my-3">
                 <label class="text-gray-700 text-xl">Kërko fjalën e huaj</label><br>
-                <div class="flex justify-start items-center gap-x-3 max-w-md">
-                    <input id="inpt" type="search" class="my-3 p-2 border border-gray-500">
+                <div class="flex justify-start items-center gap-x-1">
+                    <input id="inpt" type="search" class="my-3 p-2 border border-gray-500 flex-1">
                     <button id="drbtn" type="button"
-                    class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400">të gjitha</button>
+                    class="text-gray-600 bg-gray-100 hover:text-gray-800 hover:bg-gray-100 py-2 px-4 border border-gray-400">të gjitha</button>
                 </div>
                 
             </div>
@@ -52,7 +61,7 @@
             </div>
 
             <div>
-                <ul id="otpt" class="out max-w-lg h-96 overflow-y-scroll m-0 text-amber-800"></ul>
+                <ul id="otpt" class="out h-96 overflow-y-scroll m-0 text-amber-800"></ul>
             </div>           
 
         </div>
