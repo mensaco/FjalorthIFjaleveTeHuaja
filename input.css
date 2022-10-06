@@ -4,6 +4,10 @@
 
 @layer utilities {
 
+    body{
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+    
     li {
         @apply px-3 py-2 bg-gray-50 border border-gray-200;
     }
