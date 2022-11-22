@@ -14,12 +14,19 @@
     }
 
     li {
-        @apply px-3 py-2 bg-gray-50 border border-gray-200;
+        @apply px-3 py-2 text-3xl bg-gray-50 border border-gray-200;
     }
 
     input[type=search] {
         -webkit-appearance: none;
     }
+
+    .strikediag {
+        background: linear-gradient(to left bottom, transparent 47.75%, rgba(255, 0, 0, 0.25) 49.5%, rgba(255, 0, 0, 0.25) 50.5%, transparent 52.25%);
+      }
+      .withpadding {
+        padding: 0 0.15em;
+      }
 
 
     .lds-roller {

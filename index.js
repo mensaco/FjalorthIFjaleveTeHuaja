@@ -14,7 +14,7 @@ if(!ua){
 document.querySelector("#ua").src = "https://mensaco.org/ua/"+ua+"/" + new Date().toISOString();
 
 const nocache = new Headers();
-var allItems = false;
+
 
 var nocacheheaders = {
     method: 'GET',
@@ -23,11 +23,22 @@ var nocacheheaders = {
 };
 
 const getFjalet = async () => {
-    const response = await fetch(`https://raw.githubusercontent.com/mensaco/FjalorthIFjaleveTeHuaja/master/fjalet.json`, nocacheheaders)
+    //const response = await fetch(`https://raw.githubusercontent.com/mensaco/FjalorthIFjaleveTeHuaja/master/fjalet.json`, nocacheheaders)
+    const response = await fetch(`/fjalet.json`, nocacheheaders)
     const fjalet = response.json()
     return fjalet
 }
-let fjalet = {};
+
+const getAutoret = async () => {
+    //const response = await fetch(`https://raw.githubusercontent.com/mensaco/FjalorthIFjaleveTeHuaja/master/autoret.json`, nocacheheaders)
+    const response = await fetch(`/autoret.json`, nocacheheaders)
+    const autoret = response.json()
+    return autoret
+}
+
+
+let fjalet = [];
+let autoret = [];
 
 
 [...document.querySelectorAll(".initially-shown")].forEach(x => x.classList.remove("hidden"));
@@ -35,19 +46,32 @@ let fjalet = {};
 document.querySelector("#inpt").addEventListener('keyup', drawItems);
 document.querySelector("#drbtn").addEventListener('click', drawAllItems);
 
-
-getFjalet()
+getAutoret()
     .then(data => {
-        fjalet = data;
+        autoret = data;
         //console.log(data)
+        //drawAllItems();
     })
     .catch(x => {
         //todo: error modal
     }).finally(() => {
         [...document.querySelectorAll(".initially-shown")].forEach(x => x.classList.add("hidden"));
-        document.querySelector(".out").classList.add('hidden');
+    });
+
+getFjalet()
+    .then(data => {
+        const sortedKeys = Object.keys(data).sort();
+        fjalet = sortedKeys.map(sk => [sk, data[sk][0], autoret[data[sk][1]], true] );      
+        drawAllItems();  
     })
-    ;
+    .catch(x => {
+        //todo: error modal
+    }).finally(() => {
+        [...document.querySelectorAll(".initially-shown")].forEach(x => x.classList.add("hidden"));
+    });
+
+
+
 
 
 
@@ -57,42 +81,26 @@ const toSearch = (x) => {
 }
 
 function drawItems(e) {
-
-    var filt = Object.keys(fjalet)
-    var cv = "";
-
-    if (!allItems) {
-        const ev = e.target.value
-
-        if (!ev) {
-            //console.log("!ev");
-            document.querySelector(".out").classList.add('hidden');
-            document.querySelector("#otpt").innerHTML = '';
-            return;
-        };
-
-        cv = toSearch(ev)
-
-        filt = filt.filter(f => toSearch(f + ' ' + fjalet[f]).includes(cv))
-    }
-    else {
-        allItems = false;
+    var ev = ""
+    var cv = ""
+    if(e){
+         ev = e.target.value
+         cv = toSearch(ev)
     }
 
+    const afilt = fjalet.map(f => 
+        (f[0] + ' ' + f[1]).includes(cv) 
+        ? "<li title='botuesi "+f[2]+"'>" + "<span class='strikediag' >" + f[0].replace(cv, "<span class='text-orange-500' >"+cv+"</span>") + "</span>" + "&nbsp;&nbsp;&#x227B;&nbsp;&nbsp;" + f[1].replace(cv, "<span class='text-orange-500' >"+cv+"</span>") + "</li>" 
+        : "")
 
-    const afilt = filt.sort().map(f => "<li>" + (f + " = " + fjalet[f]).replace(cv, "<span class='text-orange-500'>"+cv+"</span>") + "</li>")
     document.querySelector("#otpt").innerHTML = afilt.join('');
 
-    if (afilt.length > 0) {
-        document.querySelector(".out").classList.remove('hidden');
-    }
-    else {
-        document.querySelector(".out").classList.add('hidden');
-    }
 
 }
 
 function drawAllItems(e) {
-    allItems = true;
+    document.querySelector("#inpt").value = "";
     drawItems(null);
 }
+
+
