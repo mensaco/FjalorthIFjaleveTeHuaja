@@ -273,5 +273,9 @@
     "ventilator": ["freskore", 0],
     "vigjilent": ["syçelë", 0],
     "violencë": ["dhunë", 0],
-    "vital": ["jetësor, jetik", 0]    
+    "vital": ["jetësor, jetik", 0],
+    "konstitucionist": ["hartues kushtetute",1],
+    "bord":["këshill",1],
+    "tangim":["prekje, ndikim", 0]
+    
 }
