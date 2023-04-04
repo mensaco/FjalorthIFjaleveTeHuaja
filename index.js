@@ -88,10 +88,16 @@ function drawItems(e) {
          cv = toSearch(ev)
     }
 
-    const afilt = fjalet.map(f => 
-        (f[0] + ' ' + f[1]).includes(cv) 
-        ? "<li title='botuesi "+f[2]+"'>" + "<span class='strikediag' >" + f[0].replace(cv, "<span class='text-orange-500' >"+cv+"</span>") + "</span>" + "&nbsp;&nbsp;&#x227B;&nbsp;&nbsp;" + f[1].replace(cv, "<span class='text-orange-500' >"+cv+"</span>") + "</li>" 
-        : "")
+    const f1 = fjalet.filter(f => (f[0] + ' ' + f[1]).includes(cv))
+    f1.forEach(f => f[2] = f[2] != autoret[0] ? "botuesi " + f[2] : "" )
+
+    // const afilt = fjalet.map(f => 
+    //     (f[0] + ' ' + f[1]).includes(cv) 
+    //     ? "<li title='botuesi "+f[2]+"'>" + "<span class='strikediag' >" + f[0].replace(cv, "<span class='text-orange-500' >"+cv+"</span>") + "</span>" + "&nbsp;&nbsp;&#x227B;&nbsp;&nbsp;" + f[1].replace(cv, "<span class='text-orange-500' >"+cv+"</span>") + "</li>" 
+    //     : "")
+
+    const afilt = f1.map(f => 
+        "<li title='"+f[2]+"'>" + "<span class='strikediag' >" + f[0].replace(cv, "<span class='text-orange-500' >"+cv+"</span>") + "</span>" + "&nbsp;&nbsp;&#x227B;&nbsp;&nbsp;" + f[1].replace(cv, "<span class='text-orange-500' >"+cv+"</span>") + "</li>" )
 
     document.querySelector("#otpt").innerHTML = afilt.join('');
 
