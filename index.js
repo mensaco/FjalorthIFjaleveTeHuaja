@@ -1,4 +1,4 @@
-function uuidv4() {
+﻿function uuidv4() {
     return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
       (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     );
@@ -23,14 +23,14 @@ var nocacheheaders = {
 };
 
 const getFjalet = async () => {
-    const response = await fetch(`https://raw.githubusercontent.com/mensaco/FjalorthIFjaleveTeHuaja/master/fjalet.json`, nocacheheaders)
+    const response = await fetch("https://raw.githubusercontent.com/mensaco/FjalorthIFjaleveTeHuaja/master/fjalet.json?v=04214da5-23d9-4fbb-8538-9234e9924896", nocacheheaders)
     //const response = await fetch(`/fjalet.json`, nocacheheaders)
     const fjalet = response.json()
     return fjalet
 }
 
 const getAutoret = async () => {
-    const response = await fetch(`https://raw.githubusercontent.com/mensaco/FjalorthIFjaleveTeHuaja/master/autoret.json`, nocacheheaders)
+    const response = await fetch("https://raw.githubusercontent.com/mensaco/FjalorthIFjaleveTeHuaja/master/autoret.json?v=04214da5-23d9-4fbb-8538-9234e9924896", nocacheheaders)
     //const response = await fetch(`/autoret.json`, nocacheheaders)
     const autoret = response.json()
     return autoret
@@ -80,6 +80,17 @@ const toSearch = (x) => {
     return x.replace(/ /g, '').toLowerCase().replace(/ë/gi, "e").replace(/ç/gi, "c")
 }
 
+function toformatted(f,cv) {
+    const title = f[2] != "" ?  ` title="${f[2]}"` : ""
+    const fs1 = f[0].replace(cv, `<span class="text-orange-500">${cv}</span>`)
+    const fs2 = f[1].replace(cv, `<span class="text-orange-500">${cv}</span>`)
+    const landau = "&nbsp;&nbsp;&#x227B;&nbsp;&nbsp;"
+
+    return `<li${title}>
+                <span class="strikediag">${fs1}</span>${landau}${fs2}
+            </li>`
+}
+
 function drawItems(e) {
     var ev = ""
     var cv = ""
@@ -89,15 +100,14 @@ function drawItems(e) {
     }
 
     const f1 = fjalet.filter(f => (f[0] + ' ' + f[1]).includes(cv))
-    f1.forEach(f => f[2] = f[2] != autoret[0] ? "botuesi " + f[2] : "" )
+    //f1.forEach(f => f[2] = f[2] != autoret[0] ? "botuesi " + f[2] : "" )
 
     // const afilt = fjalet.map(f => 
     //     (f[0] + ' ' + f[1]).includes(cv) 
     //     ? "<li title='botuesi "+f[2]+"'>" + "<span class='strikediag' >" + f[0].replace(cv, "<span class='text-orange-500' >"+cv+"</span>") + "</span>" + "&nbsp;&nbsp;&#x227B;&nbsp;&nbsp;" + f[1].replace(cv, "<span class='text-orange-500' >"+cv+"</span>") + "</li>" 
     //     : "")
 
-    const afilt = f1.map(f => 
-        "<li title='"+f[2]+"'>" + "<span class='strikediag' >" + f[0].replace(cv, "<span class='text-orange-500' >"+cv+"</span>") + "</span>" + "&nbsp;&nbsp;&#x227B;&nbsp;&nbsp;" + f[1].replace(cv, "<span class='text-orange-500' >"+cv+"</span>") + "</li>" )
+    const afilt = f1.map(f => toformatted(f, cv))
 
     document.querySelector("#otpt").innerHTML = afilt.join('');
 
