@@ -6,4 +6,6 @@ foreach ($fileToVersion in  ".\index.html", ".\index.js") {
     $currentIndexHtml | Set-Content -Path $fileToVersion -Encoding UTF8
 }
 
+npx update-browserslist-db@latest
+
 
