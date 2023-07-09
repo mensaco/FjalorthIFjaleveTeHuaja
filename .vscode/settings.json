@@ -18,6 +18,10 @@
             {
                 "match": "\\.js$",
                 "cmd": "RebuildTailwindCss.bat"
+            },
+            {
+                "match": "\\.json$",
+                "cmd": "RebuildTailwindCss.bat"
             }
         ]
     }
