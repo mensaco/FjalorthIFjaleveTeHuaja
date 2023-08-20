@@ -32,13 +32,13 @@ var nocacheheaders = {
 };
 
 const getFjalet = async () => {
-    const response = await fetch("https://raw.githubusercontent.com/mensaco/FjalorthIFjaleveTeHuaja/master/fjalet.json?v=82104ace-3e1a-4c67-8471-9838c2c7d4c4", nocacheheaders)
+    const response = await fetch("https://raw.githubusercontent.com/mensaco/FjalorthIFjaleveTeHuaja/master/fjalet.json?v=367c5dc0-ed73-4684-ad08-a6ab8ee91ba4", nocacheheaders)
     const fjalet = response.json()
     return fjalet
 }
 
 const getAutoret = async () => {
-    const response = await fetch("https://raw.githubusercontent.com/mensaco/FjalorthIFjaleveTeHuaja/master/autoret.json?v=82104ace-3e1a-4c67-8471-9838c2c7d4c4", nocacheheaders)
+    const response = await fetch("https://raw.githubusercontent.com/mensaco/FjalorthIFjaleveTeHuaja/master/autoret.json?v=367c5dc0-ed73-4684-ad08-a6ab8ee91ba4", nocacheheaders)
     const autoret = response.json()
     return autoret
 }
